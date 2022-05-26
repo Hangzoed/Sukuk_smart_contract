@@ -45,7 +45,7 @@ contract Sukuk{
 
     function     startSukuk( ) public onlyAdmin{
         require(
-            sukuk_state == SUKUK_STATE.CLOSE,
+            sukuk_state = SUKUK_STATE.CLOSE,
             "Can't start a new Sukuk already"
         );
 
@@ -59,7 +59,7 @@ contract Sukuk{
 
     function  IssueSukuk( ) public onlyAdmin{
         require(
-            sukuk_state == SUKUK_STATE.OPEN,
+            sukuk_state = SUKUK_STATE.OPEN,
             "Can't issue new suks yet"
         );
 
@@ -69,8 +69,7 @@ contract Sukuk{
 
     function EndIssue() public onlyAdmin{
         require(
-            sukuk_state == SUKUK_STATE.ISSUE,
-            "Test"
+            sukuk_state = SUKUK_STATE.ISSUE
         );
 
         sukuk_state = SUKUK_STATE.COOLDOWN;
@@ -78,8 +77,7 @@ contract Sukuk{
 
     function startRedeem() public onlyAdmin{
         require(
-            sukuk_state == SUKUK_STATE.COOLDOWN,
-            "Test"
+            sukuk_state = SUKUK_STATE.COOLDOWN
         );
 
         sukuk_state = SUKUK_STATE.REDEEM_PERIOD;
