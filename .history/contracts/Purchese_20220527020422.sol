@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.6.0;
+pragma solidity >=0.6.0 <0.9.0;
 
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
-
+import "@chainlink/contracts/src/v0.6/vendor/SafeMathChainlink.sol";
 
 // This one for now to track what each investor/ I will look at the implementation later
 
 
 contract Sukuk{
     mapping(address => uint256) public addressToAmountFunded;
-    address payable[] public investors;
-    address public  admin;
+    address[] public investors;
+    address public admin;
     AggregatorV3Interface public priceFeed;
 
     //Sukuk State
@@ -27,10 +27,7 @@ contract Sukuk{
 
 
     //added an argument to constructor for testing
-    constructor(
-        address _priceFeed
-      ) 
-    public {
+    constructor(address _priceFeed  ) public{
         priceFeed = AggregatorV3Interface(_priceFeed);
         // Admin will be the contract sender for now
         admin = msg.sender;
@@ -43,7 +40,7 @@ contract Sukuk{
 
         // Right now it only tracks the amount and address only.
         addressToAmountFunded[msg.sender] += msg.value;
-        investors.push(payable(msg.sender));
+        investors.push(msg.sender);
     }
 
 
@@ -63,7 +60,7 @@ contract Sukuk{
             address funder = investors[funderIndex];
             addressToAmountFunded[funder] = 0;
         }
-
+        investors = new address[](0);
     }
 
     //function redeem() public payable{}

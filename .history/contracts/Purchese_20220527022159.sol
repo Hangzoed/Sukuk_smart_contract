@@ -63,7 +63,7 @@ contract Sukuk{
             address funder = investors[funderIndex];
             addressToAmountFunded[funder] = 0;
         }
-
+        investors = new address[](0);
     }
 
     //function redeem() public payable{}

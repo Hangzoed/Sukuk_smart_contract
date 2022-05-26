@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.6.0;
+pragma solidity 0.8.0;
 
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
@@ -63,7 +63,7 @@ contract Sukuk{
             address funder = investors[funderIndex];
             addressToAmountFunded[funder] = 0;
         }
-
+        investors = new address[](0);
     }
 
     //function redeem() public payable{}
