@@ -5,31 +5,12 @@ pragma solidity >=0.6.0 <0.9.0;
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 import "@chainlink/contracts/src/v0.6/vendor/SafeMathChainlink.sol";
 
-// This one for now to track what each investor/ I will look at the implementation later
-
-struct investor{
-    address investor_address;
-    uint256 suk_number;
-
-}
 
 contract Sukuk{
     mapping(address => uint256) public addressToAmountFunded;
     address[] public investors;
     address public admin;
     AggregatorV3Interface public priceFeed;
-
-    //Sukuk State
-    enum Sukuk_state{
-        OPEN,
-        CLOSE,
-        REDEEM_PERIOD,
-        TERM_1,
-        TERM_2
-    }
-
-
-
 
     //added an argument to constructor for testing
     constructor(address _priceFeed  ) public{
@@ -39,7 +20,7 @@ contract Sukuk{
 
     }
 
-    function purchase_suk(uint256 _number_of_sukuk) public payable{
+    function fund() public payable{
 
 
 
@@ -67,8 +48,6 @@ contract Sukuk{
         }
         investors = new address[](0);
     }
-
-    function redeem() public payable
 
 
     }
