@@ -18,13 +18,14 @@ contract Sukuk{
     enum SUKUK_STATE{
         OPEN,
         ISSUE,
-        CLOSE,
+        CLOSEED,
         COOLDOWN, // This state will be when the contract is in effect however it doesn't have any tasks to excute
         REDEEM_PERIOD,
         TERM_1,
         TERM_2
     }
     SUKUK_STATE public sukuk_state;
+
 
 
 
@@ -44,10 +45,7 @@ contract Sukuk{
 
 
     function     startSukuk( ) public onlyAdmin{
-        require(
-            sukuk_state == SUKUK_STATE.CLOSE,
-            "Can't start a new Sukuk already"
-        );
+
 
         sukuk_state = SUKUK_STATE.OPEN;
 

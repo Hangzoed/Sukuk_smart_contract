@@ -1,0 +1,15 @@
+{
+  "contracts": {
+    "Sukuk": "e2e77a53fbc55718bbc36a15e902a9aac0700d25"
+  },
+  "tests": {
+    "tests/unit_test.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": "s.",
+      "sha1": "dd38b67607709867163fd19c24f0d65043215069",
+      "txhash": []
+    }
+  },
+  "tx": {}
+}
