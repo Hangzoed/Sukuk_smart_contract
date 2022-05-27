@@ -16,21 +16,16 @@ contract Sukuk{
 
     //Sukuk State
     enum SUKUK_STATE{
-        COOLDOWN,// This state will be when the contract is in effect however it doesn't have any tasks to excute
         OPEN,
         ISSUE,
         CLOSEED,
-        
+        COOLDOWN, // This state will be when the contract is in effect however it doesn't have any tasks to excute
         REDEEM_PERIOD,
         TERM_1,
         TERM_2
     }
     SUKUK_STATE public sukuk_state;
-
-
-    function get() public view returns(SUKUK_STATE){
-        return sukuk_state;
-    }
+    sukuk_state = SUKUK_STATE.CLOSEED
 
 
 
@@ -44,7 +39,6 @@ contract Sukuk{
         priceFeed = AggregatorV3Interface(_priceFeed);
         // Admin will be the contract sender for now
         admin = msg.sender;
-        sukuk_state = SUKUK_STATE.CLOSEED;
 
     }
 
@@ -52,13 +46,6 @@ contract Sukuk{
 
 
     function     startSukuk( ) public onlyAdmin{
-            require(
-            sukuk_state == SUKUK_STATE.CLOSEED,
-            "Can't issue new suks yet"
-        );
-
-
-
 
 
         sukuk_state = SUKUK_STATE.OPEN;

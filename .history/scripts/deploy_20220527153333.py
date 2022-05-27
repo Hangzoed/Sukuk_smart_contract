@@ -6,11 +6,10 @@ def deploy_contract():
 
     suk = Sukuk.deploy('0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',{"from":account})
     print(suk)
-    #print(suk.sukuk_state)
-    print(suk.get())
+    print(suk.sukuk_state)
 
-    #suk.startSukuk({"from":account})
-    print(suk.get())
+    suk.startSukuk({"from":account})
+    print(suk.sukuk_state)
     time.sleep(2)
     return suk
     

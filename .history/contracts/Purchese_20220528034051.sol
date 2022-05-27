@@ -44,7 +44,6 @@ contract Sukuk{
         priceFeed = AggregatorV3Interface(_priceFeed);
         // Admin will be the contract sender for now
         admin = msg.sender;
-        sukuk_state = SUKUK_STATE.CLOSEED;
 
     }
 
