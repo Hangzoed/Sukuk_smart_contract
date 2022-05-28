@@ -116,7 +116,7 @@ contract Sukuk{
 
 
 
-    function setIjaara(address payable _Ijaara ) public onlyAdmin{
+    function setIjaara(address _Ijaara ) public onlyAdmin{
         Ijaara = _Ijaara;
         
     }
@@ -138,7 +138,7 @@ contract Sukuk{
         _;
     }
 
-    function withdraw() public payable onlyIjaara{
+    function withdraw() public payable onlyAdmin{
         msg.sender.transfer(address(this).balance);
 
         for (

@@ -114,20 +114,6 @@ contract Sukuk{
     }
 
 
-
-
-    function setIjaara(address payable _Ijaara ) public onlyAdmin{
-        Ijaara = _Ijaara;
-        
-    }
-
-
-
-
-
-
-
-
     modifier onlyAdmin(){
         require(msg.sender == admin);
         _;
@@ -138,7 +124,7 @@ contract Sukuk{
         _;
     }
 
-    function withdraw() public payable onlyIjaara{
+    function withdraw() public payable onlyAdmin{
         msg.sender.transfer(address(this).balance);
 
         for (

@@ -13,7 +13,7 @@ contract Sukuk{
     address payable[] public investors;
     address public  admin;
     AggregatorV3Interface public priceFeed;
-    address payable public Ijaara ;
+    address payable public Ijarra ;
 
     //Sukuk State
     enum SUKUK_STATE{
@@ -114,31 +114,12 @@ contract Sukuk{
     }
 
 
-
-
-    function setIjaara(address payable _Ijaara ) public onlyAdmin{
-        Ijaara = _Ijaara;
-        
-    }
-
-
-
-
-
-
-
-
     modifier onlyAdmin(){
         require(msg.sender == admin);
         _;
     }
 
-    modifier onlyIjaara(){
-        require(msg.sender == Ijaara);
-        _;
-    }
-
-    function withdraw() public payable onlyIjaara{
+    function withdraw() public payable onlyAdmin{
         msg.sender.transfer(address(this).balance);
 
         for (

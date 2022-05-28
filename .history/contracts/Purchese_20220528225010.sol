@@ -138,7 +138,7 @@ contract Sukuk{
         _;
     }
 
-    function withdraw() public payable onlyIjaara{
+    function withdraw() public payable onlyAdmin{
         msg.sender.transfer(address(this).balance);
 
         for (
