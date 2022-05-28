@@ -17,9 +17,6 @@ def test_contract_state():
     account = accounts[0]
     
     suk.startSukuk({"from":account})
-    suk.IssueSukuk({"from":account})
-    suk.EndIssue({"from":account})
-    suk.startRedeem({"from":account})
 
 def test_contract_state_saftey():
     suk = deploy_contract()
@@ -27,6 +24,3 @@ def test_contract_state_saftey():
     account = accounts[1]
     with pytest.raises(exceptions.VirtualMachineError):
         suk.startSukuk({"from":account})
-        suk.IssueSukuk({"from":account})    
-        suk.EndIssue({"from":account})
-        suk.startRedeem({"from":account})
