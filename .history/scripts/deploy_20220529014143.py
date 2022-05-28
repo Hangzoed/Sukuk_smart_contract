@@ -28,9 +28,6 @@ def Ijaara_withdraw_deposit():
 
 
     suk.withdraw({"from":Ijaara,"value":Web3.toWei(0.5,"Ether")})
-    suk.deposit({"from":Ijaara,"value":Web3.toWei(2,"Ether")})
-    print(suk.addressToAmountDeposited)
-    suk.getBalance()
     time.sleep(5)
 
 

@@ -1,6 +1,5 @@
 from brownie import Sukuk,config,accounts
 import time
-from web3 import Web3
 
 def deploy_contract():
     account = accounts[0]
@@ -27,11 +26,7 @@ def Ijaara_withdraw_deposit():
     suk.setIjaara(Ijaara,{"from":owner})
 
 
-    suk.withdraw({"from":Ijaara,"value":Web3.toWei(0.5,"Ether")})
-    suk.deposit({"from":Ijaara,"value":Web3.toWei(2,"Ether")})
-    print(suk.addressToAmountDeposited)
-    suk.getBalance()
-    time.sleep(5)
+    suk.withdraw({"from":owner,"value":Web3.toWei(0.5,"Ether")})
 
 
 
@@ -43,4 +38,3 @@ def Ijaara_withdraw_deposit():
 
 def main():
     deploy_contract()
-    Ijaara_withdraw_deposit()

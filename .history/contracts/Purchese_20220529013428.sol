@@ -169,12 +169,7 @@ contract Sukuk{
     //function redeem() public payable{}
 
     function deposit() public payable onlyIjaara{
-        addressToAmountDeposited[msg.sender] +=  msg.value;
 
-    }
-    function getBalance( ) view public returns (uint256 balance) {
-        return address(this).balance;
-        
     }
 
 

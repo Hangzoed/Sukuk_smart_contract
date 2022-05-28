@@ -10,7 +10,6 @@ import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
 contract Sukuk{
     mapping(address => uint256) public addressToAmountFunded;
-    mapping(address => uint256) public addressToAmountDeposited;
     address payable[] public investors;
     address public  admin;
     AggregatorV3Interface public priceFeed;
@@ -110,9 +109,6 @@ contract Sukuk{
 
 
         // Right now it only tracks the amount and address only.
-        // Later I will need to take the number of sukuk as a factor and change how it works
-        // It should take the number of sukuk and checks if the sent amount is correct or not 
-        // Not lower or higher
         addressToAmountFunded[msg.sender] += msg.value;
         investors.push(payable(msg.sender));
     }
@@ -167,15 +163,6 @@ contract Sukuk{
     }
 
     //function redeem() public payable{}
-
-    function deposit() public payable onlyIjaara{
-        addressToAmountDeposited[msg.sender] +=  msg.value;
-
-    }
-    function getBalance( ) view public returns (uint256 balance) {
-        return address(this).balance;
-        
-    }
 
 
 }

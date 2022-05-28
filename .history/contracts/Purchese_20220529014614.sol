@@ -173,7 +173,7 @@ contract Sukuk{
 
     }
     function getBalance( ) view public returns (uint256 balance) {
-        return address(this).balance;
+        return address(this).balance
         
     }
 

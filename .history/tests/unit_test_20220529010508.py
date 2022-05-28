@@ -40,9 +40,9 @@ def test_modifers():
     assert suk.getAdminAddress() == owner
     #Ijaara address is none
     print(suk.getIjaaraAddress())
-    assert suk.getIjaaraAddress() == "0x0000000000000000000000000000000000000000"
-    suk.setIjaara(Ijaara,{"from":owner})
-    assert suk.getIjaaraAddress() == Ijaara
+    #assert suk.getIjaaraAddress() == "0x0000000000000000000000000000000000000000"
+    #suk.setIjaara(Ijaara,{"from":owner})
+    #assert suk.getIjaaraAddress() == Ijaara
 
 
 
@@ -50,8 +50,8 @@ def test_withdraw():
     suk = deploy_contract()
     owner = accounts[0]
     Ijaara = accounts[1]
-    suk.purchase_suk(3,{"from":owner,"value":Web3.toWei(1,"Ether")})
+    suk.purchase_suk({"from":owner,"value":Web3.toWei(1,"Ether")})
     suk.setIjaara(Ijaara,{"from":owner})
 
 
-    suk.withdraw({"from":owner,"value":Web3.toWei(0.5,"Ether")})
+    #suk.withdraw()

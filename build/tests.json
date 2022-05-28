@@ -1,27 +1,7 @@
 {
   "contracts": {
-    "Sukuk": "bcf48d4ed802f5e3086d37e5a60efbe0fb22cdd3"
+    "Sukuk": "3e92acff2529141b30ac9e21a36bb90aa2761c47"
   },
-  "tests": {
-    "tests/unit_test.py": {
-      "coverage": false,
-      "isolated": false,
-      "results": "ss.",
-      "sha1": "968e268a50b3409cbb226d43657a57ab897833d3",
-      "txhash": [
-        "772ee63f2904a0c425fb4cd64538bd67cba473f3"
-      ]
-    }
-  },
-  "tx": {
-    "772ee63f2904a0c425fb4cd64538bd67cba473f3": {
-      "Sukuk": {
-        "1": [
-          [],
-          [],
-          []
-        ]
-      }
-    }
-  }
+  "tests": {},
+  "tx": {}
 }
