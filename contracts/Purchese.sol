@@ -9,16 +9,32 @@ import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
 
 contract Sukuk{
+
+    struct suk_investor{
+        address investoraddress;
+        uint256 number_of_sukuk;
+        uint256 value;
+
+    }
+
+
+
+
     mapping(address => uint256) public addressToAmountFunded;
     mapping(address => uint256) public addressToAmountDeposited;
     address payable[] public investors;
     address public  admin;
     AggregatorV3Interface public priceFeed;
     address payable public Ijaara ;
+    uint public suk_price;
+    suk_investor[] public suk_investors;
+
+
+
 
     //Sukuk State
     enum SUKUK_STATE{
-        COOLDOWN,// This state will be when the contract is in effect however it doesn't have any tasks to excute
+        COOLDOWN,   //This state will be when the contract is in effect however it doesn't have any tasks to excute
         OPEN,
         ISSUE,
         CLOSEED,
@@ -38,6 +54,12 @@ contract Sukuk{
 
 
 
+
+
+
+
+
+
     //added an argument to constructor for testing
     constructor(
         address _priceFeed
@@ -47,7 +69,23 @@ contract Sukuk{
         // Admin will be the contract sender for now
         admin = msg.sender;
         sukuk_state = SUKUK_STATE.CLOSEED;
+        suk_price = 100;
 
+    }
+
+
+    function get_expetected_price(uint256 _numberOfSukuk) public returns (uint256 exptectedPrice) {
+        suk_price = getEntranceFee();
+    }
+
+    function getEntranceFee() public view returns (uint256) {
+        (, int256 price, , , ) = priceFeed.latestRoundData();
+        uint256 adjustedPrice = uint256(price) * 10**10; // 18 decimals
+        // $50, $2,000 / ETH
+        // 50/2,000
+        // 50 * 100000 / 2000
+        uint256 costToEnter = (suk_price * 10**18) / adjustedPrice;
+        return costToEnter;
     }
 
 
@@ -113,6 +151,29 @@ contract Sukuk{
         // Later I will need to take the number of sukuk as a factor and change how it works
         // It should take the number of sukuk and checks if the sent amount is correct or not 
         // Not lower or higher
+
+
+        new_investor = suk_investor;
+        uint expectedPrice = get_expetected_price(_number_of_sukuk);
+        require(
+            expectedPrice == msg.value,
+            "Send the correct amount of eth"
+        );
+
+
+        new_investor.investoraddress = msg.adress;
+        new_investor.number_of_sukuk = _number_of_sukuk;
+        new_investor.value = msg.value;
+
+
+        suk_investors.push(new_investor);
+
+
+
+
+
+
+
         addressToAmountFunded[msg.sender] += msg.value;
         investors.push(payable(msg.sender));
     }
