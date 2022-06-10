@@ -153,7 +153,7 @@ contract Sukuk{
         // Not lower or higher
 
 
-        new_investor = suk_investor;
+        struct suk_investor memory new_investor = suk_investor;
         uint expectedPrice = get_expetected_price(_number_of_sukuk);
         require(
             expectedPrice == msg.value,
