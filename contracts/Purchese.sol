@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.6.0;
+pragma solidity ^0.6.0;
 
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
@@ -14,6 +14,7 @@ contract Sukuk{
         address investoraddress;
         uint256 number_of_sukuk;
         uint256 value;
+        uint256 allowed;
 
     }
 
@@ -28,6 +29,10 @@ contract Sukuk{
     address payable public Ijaara ;
     uint public suk_price;
     suk_investor[] public suk_investors;
+
+
+
+    mapping(address => suk_investor) public investor_test;
 
 
 
@@ -50,7 +55,15 @@ contract Sukuk{
         return sukuk_state;
     }
 
+    function give_right_to_purchase(address Investor) public{
+        require(
+            msg.sender == admin,
+            "Only admin can give right to access"
+        );
+        investor_test[suk_investor].allowed = 1;
 
+
+    }
 
 
 
@@ -153,7 +166,7 @@ contract Sukuk{
         // Not lower or higher
 
 
-        struct suk_investor memory new_investor = suk_investor;
+        //suk_investor memory new_investor = msg.sender;
         uint expectedPrice = get_expetected_price(_number_of_sukuk);
         require(
             expectedPrice == msg.value,
@@ -161,12 +174,12 @@ contract Sukuk{
         );
 
 
-        new_investor.investoraddress = msg.adress;
-        new_investor.number_of_sukuk = _number_of_sukuk;
-        new_investor.value = msg.value;
+       // new_investor.investoraddress = msg.sender;
+        //new_investor.number_of_sukuk = _number_of_sukuk;
+       // new_investor.value = msg.value;
 
 
-        suk_investors.push(new_investor);
+       // suk_investors.push(new_investor);
 
 
 
@@ -175,7 +188,7 @@ contract Sukuk{
 
 
         addressToAmountFunded[msg.sender] += msg.value;
-        investors.push(payable(msg.sender));
+       // investors.push(payable(msg.sender));
     }
 
 
