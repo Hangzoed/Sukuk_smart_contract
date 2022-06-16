@@ -88,7 +88,7 @@ contract Sukuk{
 
 
     function get_expetected_price(uint256 _numberOfSukuk) public view returns (uint256 exptectedPrice) {
-        uint256 _suk_price = getEntranceFee();
+        _suk_price = getEntranceFee();
         uint256 expectedPrice = _suk_price * _numberOfSukuk;
 
         return expectedPrice;

@@ -37,7 +37,7 @@ def simulate():
     user_4 = get_account(5)
     # Starting contract admin
     suk = Sukuk.deploy(
-                config["networks"][network.show_active()]["eth_usd_price_feed"]
+                config["networks"][network.show_active()]["eth-price-usd"]
                 ,{"from":admin})    
     suk.startSukuk({"from":admin})
     suk.IssueSukuk({"from":admin})

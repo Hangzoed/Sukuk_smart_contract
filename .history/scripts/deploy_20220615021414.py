@@ -17,9 +17,6 @@ def deploy_contract():
     #suk.setIjaara(accounts[1],{"from":account})
     #print(suk.getIjaaraAddress())
     print(suk.getEntranceFee())
-    print(suk.get_expetected_price(1))
-    print(suk.get_expetected_price(2))
-    print(suk.get_expetected_price(3))
     
 
     time.sleep(2)

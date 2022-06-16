@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.6.0;
+pragma solidity ^0.6.0;
 
 import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 
@@ -55,15 +55,15 @@ contract Sukuk{
         return sukuk_state;
     }
 
-    //function give_right_to_purchase(address Investor) public{
-        //require(
-         //   msg.sender == admin,
-          //  "Only admin can give right to access"
-       // );
+    function give_right_to_purchase(address Investor) public{
+        require(
+            msg.sender == admin,
+            "Only admin can give right to access"
+        );
         //investor_test[suk_investor].allowed = 1;
 
 
-    //}
+    }
 
 
 
@@ -82,17 +82,13 @@ contract Sukuk{
         // Admin will be the contract sender for now
         admin = msg.sender;
         sukuk_state = SUKUK_STATE.CLOSEED;
-        suk_price = 100* (10**18);
+        suk_price = 100;
 
     }
 
 
-    function get_expetected_price(uint256 _numberOfSukuk) public view returns (uint256 exptectedPrice) {
-        uint256 _suk_price = getEntranceFee();
-        uint256 expectedPrice = _suk_price * _numberOfSukuk;
-
-        return expectedPrice;
-        
+    function get_expetected_price(uint256 _numberOfSukuk) public returns (uint256 exptectedPrice) {
+        suk_price = getEntranceFee();
     }
 
     function getEntranceFee() public view returns (uint256) {

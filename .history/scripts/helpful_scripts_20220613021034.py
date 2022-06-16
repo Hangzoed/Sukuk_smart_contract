@@ -39,4 +39,3 @@ def deploy_mocks():
     account = get_account()
     MockV3Aggregator.deploy(DECIMALS, STARTING_PRICE, {"from": account})
     print("Mocks Deployed!")
-    return MockV3Aggregator

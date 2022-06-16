@@ -8,8 +8,8 @@ def deploy_contract():
     account = accounts[0]
     print(account)
     deploy_mocks()
-
-    suk = Sukuk.deploy("0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",{"from":account})
+    price_feed_address = MockV3Aggregator[-1].address
+    suk = Sukuk.deploy(price_feed_address,{"from":account})
     
     #print(account)
     #print(suk.getAdminAddress())
@@ -17,9 +17,6 @@ def deploy_contract():
     #suk.setIjaara(accounts[1],{"from":account})
     #print(suk.getIjaaraAddress())
     print(suk.getEntranceFee())
-    print(suk.get_expetected_price(1))
-    print(suk.get_expetected_price(2))
-    print(suk.get_expetected_price(3))
     
 
     time.sleep(2)
@@ -50,4 +47,4 @@ def Ijaara_withdraw_deposit():
 
 def main():
     deploy_contract()
-    #Ijaara_withdraw_deposit()
+    Ijaara_withdraw_deposit()

@@ -1,6 +1,6 @@
-from brownie import Sukuk,config,accounts,network
+from brownie import Sukuk,config,accounts
 import time
-from scripts.helpful_scripts import deploy_mocks, get_account
+from scripts.helpful_scripts import get_account
 from scripts.deploy import deploy_contract
 from web3 import Web3
 
@@ -36,9 +36,7 @@ def simulate():
     user_3 = get_account(4)
     user_4 = get_account(5)
     # Starting contract admin
-    suk = Sukuk.deploy(
-                config["networks"][network.show_active()]["eth_usd_price_feed"]
-                ,{"from":admin})    
+    suk = Sukuk.deploy('0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',{"from":admin})    
     suk.startSukuk({"from":admin})
     suk.IssueSukuk({"from":admin})
     suk.purchase_suk(3,{"from":user_1,"value":suk.get_expetected_price(3)})

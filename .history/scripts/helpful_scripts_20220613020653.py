@@ -2,7 +2,6 @@ from brownie import (
     accounts,
     network,
     config,
-    MockV3Aggregator,
 
     Contract,
 )
@@ -10,8 +9,6 @@ from brownie import (
 FORKED_LOCAL_ENVIRONMENTS = ["mainnet-fork", "mainnet-fork-dev"]
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["development", "ganache-local"]
 
-DECIMALS = 8
-STARTING_PRICE = 200000000000
 
 def get_account(index=None, id=None):
     # accounts[0]
@@ -37,6 +34,5 @@ def deploy_mocks():
     print(f"The active network is {network.show_active()}")
     print("Deploying Mocks...")
     account = get_account()
-    MockV3Aggregator.deploy(DECIMALS, STARTING_PRICE, {"from": account})
+    MockV3Aggregator.deploy(DECIMALS, INITIAL_VALUE, {"from": account})
     print("Mocks Deployed!")
-    return MockV3Aggregator
